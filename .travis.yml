@@ -20,5 +20,8 @@ addons:
       - gfortran
 
 script: 
-  - mkdir build && cd build &&  cmake ../ &&  make &&  ./src/HelloWorld
+  - mkdir build && cd build 
+  - cmake ../ 
+  - make 
+  - ./src/HelloWorld
 
