@@ -19,7 +19,6 @@ addons:
       - gcc
       - gfortran
 
-# This comment is here because I needed a first build!
 script: 
   - mkdir build && cd build &&  cmake ../ &&  make &&  ./src/HelloWorld
 
