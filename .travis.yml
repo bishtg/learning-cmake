@@ -1,4 +1,4 @@
-language: fortran
+language: c
 
 before_script:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
