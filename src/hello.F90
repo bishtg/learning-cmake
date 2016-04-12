@@ -46,20 +46,24 @@ program main
 
   call VecDestroy(v, ierr); CHKERRQ(ierr)
 
-  do x = 1, NX
-     do y = 1, NY
-        data_out(y, x) = (x - 1) * NY + (y - 1)
-     end do
-  end do
+  if (rank == 0) then
 
-  call check( nf90_create(FILE_NAME, NF90_CLOBBER, ncid) )
-  call check( nf90_def_dim(ncid, "x", NX, x_dimid) )
-  call check( nf90_def_dim(ncid, "y", NY, y_dimid) )
-  dimids =  (/ y_dimid, x_dimid /)
-  call check( nf90_def_var(ncid, "data", NF90_INT, dimids, varid) )
-  call check( nf90_enddef(ncid) )
-  call check( nf90_put_var(ncid, varid, data_out) )
-  call check( nf90_close(ncid) )
+     do x = 1, NX
+        do y = 1, NY
+           data_out(y, x) = (x - 1) * NY + (y - 1)
+        end do
+     end do
+
+     call check( nf90_create(FILE_NAME, NF90_CLOBBER, ncid) )
+     call check( nf90_def_dim(ncid, "x", NX, x_dimid) )
+     call check( nf90_def_dim(ncid, "y", NY, y_dimid) )
+     dimids =  (/ y_dimid, x_dimid /)
+     call check( nf90_def_var(ncid, "data", NF90_INT, dimids, varid) )
+     call check( nf90_enddef(ncid) )
+     call check( nf90_put_var(ncid, varid, data_out) )
+     call check( nf90_close(ncid) )
+
+  endif
 
   call PetscFinalize(ierr)
 
