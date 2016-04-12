@@ -1,5 +1,8 @@
 cmake_minimum_required (VERSION 2.8.12)
 
+# Adjust CMake's module path.
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+
 # For now, we disable shared libs on Macs.
 if (APPLE)
   set(BUILD_SHARED_LIBS OFF)
@@ -60,6 +63,18 @@ set (HELLOWORLD_VERSION "${HELLOWORLD_MAJOR_VERSION}.${HELLOWORLD_MINOR_VERSION}
 # that the path is not stripped during installation.
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
+set(PETSC_DIR $ENV{PETSC_DIR})
+set(PETSC_ARCH $ENV{PETSC_ARCH})
+find_package(PETSc)
+if (NOT PETSC_FOUND)
+  message(FATAL_ERROR "PETSc was not found.")
+endif()
+include_directories(${PETSC_INCLUDES})
+
+# Include PETSc in the rpath.
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:${PETSC_DIR}/${PETSC_ARCH}/lib")
+
 
 # Other third-party libraries.
 #add_subdirectory(3rd-party)
