@@ -2,7 +2,7 @@
 brew update
 brew install openmpi git 
 brew tap homebrew/science
-brew install netcdf --enable-fortran
+brew install netcdf --with-fortran 
 
 git clone https://bitbucket.org/petsc/petsc.git
 
