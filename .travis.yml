@@ -27,6 +27,7 @@ addons:
 
 script: 
   - mkdir build && cd build 
+  - export PETSC_DIR=$PWD/petsc; export PETSC_ARCH=${TRAVIS_OS_NAME}-gnu
   - cmake ../ -DCMAKE_C_COMPILER=`which mpicc` -DCMAKE_CXX_COMPILER=`which mpicxx` -DCMAKE_Fortran_COMPILER=`which mpif90`
   - make VERBOSE=1
   - mpiexec -n 2 ./src/HelloWorld
