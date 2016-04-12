@@ -64,8 +64,8 @@ set (HELLOWORLD_VERSION "${HELLOWORLD_MAJOR_VERSION}.${HELLOWORLD_MINOR_VERSION}
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-set(PETSC_DIR $ENV{PETSC_DIR})
 set(PETSC_ARCH $ENV{PETSC_ARCH})
+set(PETSC_DIR $ENV{PETSC_DIR})
 find_package(PETSc)
 if (NOT PETSC_FOUND)
   message(FATAL_ERROR "PETSc was not found.")
@@ -74,6 +74,13 @@ include_directories(${PETSC_INCLUDES})
 
 # Include PETSc in the rpath.
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:${PETSC_DIR}/${PETSC_ARCH}/lib")
+
+find_package(NetCDF COMPONENTS F90 REQUIRED)
+if (NOT NETCDF_FOUND)
+  message(FATAL_ERROR "NetCDF was not found.")
+endif()
+include_directories(${NETCDF_INCLUDE_DIR})
+include_directories(${NETCDF_F90_INCLUDE_DIR})
 
 
 # Other third-party libraries.
