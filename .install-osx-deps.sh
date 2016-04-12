@@ -1,6 +1,7 @@
 # Install required software
 brew update
-brew install openmpi git
+brew install openmpi git 
+brew install netcdf --enable-fortran
 
 git clone https://bitbucket.org/petsc/petsc.git
 
