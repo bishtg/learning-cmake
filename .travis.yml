@@ -27,7 +27,7 @@ addons:
 
 script: 
   - mkdir build && cd build 
-  - cmake ../ -DCMAKE_C_COMPILER=`which gcc` -DCMAKE_CXX_COMPILER=`which g++` -DCMAKE_Fortran_COMPILER=`which gfortran`
+  - cmake ../ -DCMAKE_C_COMPILER=`which mpicc` -DCMAKE_CXX_COMPILER=`which mpicxx` -DCMAKE_Fortran_COMPILER=`which mpif90`
   - make VERBOSE=1
-  - ./src/HelloWorld
+  - mpiexec -n 2 ./src/HelloWorld
 
