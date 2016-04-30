@@ -16,7 +16,6 @@ compiler:
 
 install: 
   - ./.install-$TRAVIS_OS_NAME-deps.sh
-  - ./install-icc.sh
 
 addons:
   apt:
@@ -37,7 +36,6 @@ script:
   - make VERBOSE=1
   - mpiexec -n 2 ./src/HelloWorld
   - ncdump simple_xy.nc
-  - icc -o test/test test/test.c
 
 notifications:
   email:
