@@ -21,8 +21,8 @@ addons:
   apt:
     packages:
       - cmake
-      - gcc-5
-      - gfortran-5
+      - gcc
+      - gfortran
 
 script: 
   - export PETSC_DIR=$PWD/petsc; export PETSC_ARCH=${TRAVIS_OS_NAME}-gnu
