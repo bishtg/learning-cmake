@@ -16,7 +16,6 @@ compiler:
 
 install: 
   - ./.install-$TRAVIS_OS_NAME-deps.sh
-  - ./install-icc.sh
 
 addons:
   apt:
