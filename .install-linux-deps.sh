@@ -1,5 +1,5 @@
 sudo apt-get update -qq
-sudo apt-get install -y cmake gcc libopenmpi-dev openmpi-bin liblapack-dev gfortran mercurial git netcdf-bin libnetcdf-dev 
+sudo apt-get install -y cmake gcc-5 libopenmpi-dev openmpi-bin liblapack-dev gfortran-5 mercurial git netcdf-bin libnetcdf-dev 
 
 git clone https://bitbucket.org/petsc/petsc.git
 
